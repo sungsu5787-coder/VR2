@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "Contact": {
+      "title": "Contact",
+      "description": "Business contact information from scans",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The UID of the user who owns the contact" },
+        "name": { "type": "string", "description": "Name of contact" },
+        "title": { "type": "string" },
+        "company": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "name", "createdAt"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "Action items or tasks derived from meetings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The UID of the user who owns the task" },
+        "title": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Completed", "Extracted"] },
+        "dueDate": { "type": "string", "format": "date" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "title", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}/contacts/{contactId}": {
+      "schema": { "$ref": "Contact" },
+      "description": "Contacts for a specific user"
+    },
+    "/users/{uid}/tasks/{taskId}": {
+      "schema": { "$ref": "Task" },
+      "description": "Tasks for a specific user"
+    }
+  }
+}

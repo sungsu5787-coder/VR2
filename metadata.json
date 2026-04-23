@@ -1,0 +1,8 @@
+{
+  "name": "BizAction-1",
+  "description": "AI-powered business card scanner and smart contact management dashboard.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": []
+}
